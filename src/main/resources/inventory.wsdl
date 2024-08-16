@@ -1,0 +1,110 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:tns="http://example.com/inventory"
+             targetNamespace="http://example.com/inventory">
+
+    <message name="CheckInventoryRequest">
+        <part name="productId" type="xsd:string"/>
+    </message>
+    <message name="CheckInventoryResponse">
+        <part name="quantity" type="xsd:int"/>
+    </message>
+    <message name="AddProductRequest">
+        <part name="product" type="tns:Product"/>
+    </message>
+    <message name="AddProductResponse">
+        <part name="status" type="xsd:string"/>
+    </message>
+    <message name="UpdateInventoryRequest">
+        <part name="productId" type="xsd:string"/>
+        <part name="quantity" type="xsd:int"/>
+    </message>
+    <message name="UpdateInventoryResponse">
+        <part name="status" type="xsd:string"/>
+    </message>
+    <message name="DeleteProductRequest">
+        <part
+                name="productId" type="xsd:string"/>
+    </message>
+    <message
+            name="DeleteProductResponse">
+        <part name="status" type="xsd:string"/>
+    </message>
+    <portType name="InventoryPortType">
+        <operation name="checkInventory">
+            <input
+                    message="tns:CheckInventoryRequest"/>
+            <output message="tns:CheckInventoryResponse"/>
+        </operation>
+        <operation name="addProduct">
+            <input message="tns:AddProductRequest"/>
+            <output message="tns:AddProductResponse"/>
+        </operation>
+        <operation
+                name="updateInventory">
+            <input message="tns:UpdateInventoryRequest"/>
+            <output message="tns:UpdateInventoryResponse"/>
+        </operation>
+        <operation
+                name="deleteProduct">
+            <input message="tns:DeleteProductRequest"/>
+            <output
+                    message="tns:DeleteProductResponse"/>
+        </operation>
+    </portType>
+    <binding
+            name="InventoryBinding" type="tns:InventoryPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="checkInventory">
+            <soap:operation soapAction="http://example.com/inventory/checkInventory"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="addProduct">
+            <soap:operation
+                    soapAction="http://example.com/inventory/addProduct"/>
+            <input>
+                <soap:body
+                        use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="updateInventory">
+            <soap:operation
+                    soapAction="http://example.com/inventory/updateInventory"/>
+            <input>
+                <soap:body
+                        use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="deleteProduct">
+            <soap:operation
+                    soapAction="http://example.com/inventory/deleteProduct"/>
+            <input>
+                <soap:body
+                        use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="InventoryService">
+        <port name="InventoryPort"
+              binding="tns:InventoryBinding">
+            <soap:address
+                    location="http://localhost:8080/inventory"/>
+        </port>
+    </service>
+</definitions>

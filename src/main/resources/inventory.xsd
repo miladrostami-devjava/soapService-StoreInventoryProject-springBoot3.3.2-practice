@@ -1,0 +1,94 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://example.com/inventory"
+        targetNamespace="http://example.com/inventory" elementFormDefault="qualified">
+
+    <complexType name="Product">
+        <sequence>
+            <element name="productId" type="xsd:string"/>
+            <element name="name" type="xsd:string"/>
+            <element name="quantity" type="xsd:int"/>
+        </sequence>
+    </complexType>
+    <element name="Product">
+        <complexType>
+            <sequence>
+                <element name="productId"
+                         type="xsd:string"/>
+                <element name="name" type="xsd:string"/>
+                <element
+                        name="quantity" type="xsd:int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element
+            name="CheckInventoryRequest">
+        <complexType>
+            <sequence>
+                <element name="productId"
+                         type="xsd:string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element
+            name="CheckInventoryResponse">
+        <complexType>
+            <sequence>
+                <element name="quantity"
+                         type="xsd:int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="AddProductRequest">
+        <complexType>
+            <sequence>
+                <element name="product"
+                         type="tns:Product"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element
+            name="AddProductResponse">
+        <complexType>
+            <sequence>
+                <element name="status"
+                         type="xsd:string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element
+            name="UpdateInventoryRequest">
+        <complexType>
+            <sequence>
+                <element name="productId"
+                         type="xsd:string"/>
+                <element name="quantity" type="xsd:int"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="UpdateInventoryResponse">
+        <complexType>
+            <sequence>
+                <element name="status" type="xsd:string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="DeleteProductRequest">
+        <complexType>
+            <sequence>
+                <element
+                        name="productId" type="xsd:string"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element
+            name="DeleteProductResponse">
+        <complexType>
+            <sequence>
+                <element name="status"
+                         type="xsd:string"/>
+            </sequence>
+        </complexType>
+    </element>
+
+</schema>
